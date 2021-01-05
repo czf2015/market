@@ -1,0 +1,74 @@
+html {
+  font-size: 100px;
+}
+
+body {
+  font-size: 0.16rem;
+}
+
+/* 设置滚动条的样式 */
+::scrollbar {
+  width: 0;
+  height: 0.08rem;
+}
+
+/* 滚动槽 */
+::scrollbar-track {
+  box-shadow: inset 0.06rem rgba(0, 0, 0, 0.3);
+  border-radius: 0.04rem;
+}
+
+/* 滚动条滑块 */
+::scrollbar-thumb {
+  border-radius: 0.04rem;
+  background: rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0.06rem rgba(0, 0, 0, 0.5);
+}
+
+::scrollbar-thumb {
+  background: #0492f0de;
+}
+
+.charts {
+  width: 8rem;
+}
+
+[id^="chart-"] {
+  margin-top: 0.4rem;
+  width: 8rem;
+  height: 4rem;
+}
+
+[id^="map-"] {
+  margin-top: 0.4rem;
+  width: 16rem;
+  height: 8rem;
+}
+
+.alert-box {
+  margin: auto;
+  padding: 0 2em;
+  width: 5.46rem;
+  height: 4.86rem;
+  color: #0ab7be;
+  background: #0b1435;
+  border: 0.01rem solid #31cbf2;
+  overflow-y: auto;
+}
+.alert-box h4 {
+  text-align: center;
+}
+.alert-box dl > dt {
+  border-bottom: 0.01rem solid;
+}
+.alert-box dl > dd {
+  margin-top: 0.5em;
+  margin-left: 0;
+}
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+.highlight {
+  color: #0cc6d2;
+}
