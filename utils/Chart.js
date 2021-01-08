@@ -35,16 +35,16 @@ export default class Chart {
                 top: '20%',
                 width: '40%',
                 left: '5%',
-                // containLabel: true
+                containLabel: true
             }, {
                 top: '20%',
                 width: '40%',
                 left: '5%',
-                // containLabel: true
+                containLabel: true
             }] : [{
                 top: '20%',
                 width: '75%',
-                // containLabel: true
+                containLabel: true
             }],
             calculable: true,
             tooltip: {
@@ -59,11 +59,13 @@ export default class Chart {
                 }
             },
             title: {
-                text: title
+                text: title,
+                textStyle: { color: "#08E5F3" }
             },
             legend: {
                 data: series.map(item => item.name),
                 right: '20%',
+                textStyle: { color: "#08E5F3" }
             },
             series,
         }
@@ -231,7 +233,8 @@ export class MapChart extends Chart {
                 text: subject,
                 subtext: '更新时间 2020/10/26 9:30',
                 sublink: 'http://www.census.gov/popest/data/datasets.html',
-                left: 'left'
+                left: 'left',
+                textStyle: { color: "#08E5F3" }
             },
             tooltip: {
                 // trigger: 'item',
@@ -250,17 +253,18 @@ export class MapChart extends Chart {
                 min: 0,
                 max: 100,
                 pieces: [
-                    { min: 1, max: 9, color: '#fbe2d6', label: '1-9' },
-                    { min: 10, max: 49, color: '#ffc1a6', label: '10-49' },
-                    { min: 50, max: 99, color: '#fe9466', label: '50-99' },
-                    { min: 100, max: 199, color: '#ff6619', label: '100-199' },
+                    { min: 1, max: 9, color: '#25298B', label: '1-9' },
+                    { min: 10, max: 49, color: '#3B2389', label: '10-49' },
+                    { min: 50, max: 99, color: '#581A7B', label: '50-99' },
+                    { min: 100, max: 199, color: 'rgb(244, 51, 93)', label: '100-199' },
                     { min: 200, max: 499, color: '#cc3d00', label: '200-499' },
                     { min: 500, color: '#732200', label: '500以上' },
                 ],
-                // text: ['High', 'Low'],           // 文本，默认为数值文本
-                // calculable: true,
                 orient: 'horizontal',
-                inverse: true,
+                // inverse: true,
+                textStyle: {
+                    color: "#08E5F3"
+                }
             },
             series: [
                 {
@@ -278,6 +282,13 @@ export class MapChart extends Chart {
                     // 文本位置修正
                     textFixed: {
                         // Alaska: [20, -20]
+                    },
+                    itemStyle: {
+                        normal: {
+                            borderColor: "#08E5F3",
+                            fontWeight: 700,
+                            borderWidth: 2,
+                        },
                     },
                     data
                 }

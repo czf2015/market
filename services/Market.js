@@ -1,3 +1,5 @@
+import { /* getLineSerie,  */getBarSerie/* , getPieSerie */ } from '../utils/series.js'
+
 const adapter = {
     '全球电竞市场收入情况（单位：亿美元）': {
         title: '全球电竞市场收入情况（单位：亿美元）',
@@ -128,13 +130,72 @@ const convertToChartData = (raw) => {
                 title,
                 axis,
                 categories,
-                series: series.map(serie => ({
-                    ...serie,
-                    categories,
-                    data: raw[key].map((item, idx) => serie.type == 'pie' ? { name: categories[idx], value: item[serie.name] } : item[serie.name]),
-                    barWidth: serie.type == 'bar' ? 40 : undefined,
-                    radius: serie.type == 'pie' ? [0, '55%'] : undefined,
-                })),
+                series: series.map(serie => {
+                    const data = raw[key].map((item, idx) => serie.type == 'pie' ? { name: categories[idx], value: item[serie.name] } : item[serie.name])
+                    const total = data.reduce((a, b) => a + (serie.type == 'pie' ? b.value : b), 0)
+                    Object.assign(serie, {
+                        data,
+                        radius: serie.type == 'pie' ? [0, '55%'] : undefined,
+                        label: serie.type == 'pie' ? {
+                            formatter(params) {
+                                const percent = Number(((params.value / total) * 100)).toFixed(2);
+                                return '{blue|' + params.name + '\n ' + percent + '%}';
+                            },
+                            rich: {
+                                blue: {
+                                    color: '#297eb5',
+                                    fontSize: 14,
+                                    align: 'center'
+                                },
+                            },
+                        } : undefined,
+                        ...serie.type == 'line' ? { smooth: true,
+                        symbol: 'circle',
+                        symbolSize: 4,
+                        lineStyle: {
+                            type: 'solid',
+                            width: 2,
+                            // color,
+                        },
+                        itemStyle: {
+                            // color,
+                        },
+                        areaStyle: {
+                            color: 'transparent',
+                        },
+                        emphasis: {
+                            itemStyle: {
+                                borderColor: 'rgba(64, 74, 189, 0.56)',
+                                shadowColor: 'rgba(64, 74, 189, 0.2)',
+                                shadowBlur: 20,
+                                opacity: 1,
+                                borderWidth: 10,
+                                color: {
+                                    type: 'radial',
+                                    x: 0.5,
+                                    y: 0.5,
+                                    r: 0.6,
+                                    colorStops: [{
+                                        offset: 0,
+                                        color: '#fdc558'
+                                    },
+                                    {
+                                        offset: .5,
+                                        color: '#c32129'
+                                    },
+                                    {
+                                        offset: 1,
+                                        color: '#582ed3'
+                                    }],
+                                }
+                            },
+                        }
+                     } : undefined,
+                    })
+                    return serie.type == 'bar'
+                        ? getBarSerie(serie, undefined, vertical)
+                        : serie
+                }),
                 vertical,
             }
         }
