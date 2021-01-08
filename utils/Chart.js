@@ -246,7 +246,7 @@ export class MapChart extends Chart {
             visualMap: {
                 type: 'piecewise',
                 right: 'center',
-                bottom: 0,
+                bottom: 40,
                 min: 0,
                 max: 100,
                 pieces: [
@@ -268,7 +268,8 @@ export class MapChart extends Chart {
                     type: 'map',
                     roam: false,
                     map: 'china',
-                    center: [112.968049, 36.757468],
+                    // center: [112.968049, 36.757468],
+                    center: [108.968049, 36.757468],
                     emphasis: {
                         label: {
                             show: true
