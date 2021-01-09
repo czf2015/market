@@ -58,7 +58,7 @@ const adapter = {
         series: [
             {
                 name: '金额',
-                type: 'line',
+                type: 'bar',
             },
         ]
     },
@@ -113,7 +113,7 @@ const adapter = {
         series: [
             {
                 name: '金额',
-                type: 'line',
+                type: 'bar',
             },
         ]
     },
@@ -131,66 +131,70 @@ const convertToChartData = (raw) => {
                 axis,
                 categories,
                 series: series.map(serie => {
-                    const data = raw[key].map((item, idx) => serie.type == 'pie' ? { name: categories[idx], value: item[serie.name] } : item[serie.name])
-                    const total = data.reduce((a, b) => a + (serie.type == 'pie' ? b.value : b), 0)
+                    const data = serie.type == 'pie'
+                        ? raw[key].map((item, idx) => ({ name: categories[idx], value: item[serie.name] || 0 })).sort((a, b) => b.value - a.value)
+                        : raw[key].map((item, idx) => item[serie.name])
+                    const total = data.reduce((a, b) => a + Number(serie.type == 'pie' ? b.value : b), 0)
                     Object.assign(serie, {
                         data,
                         radius: serie.type == 'pie' ? [0, '55%'] : undefined,
                         label: serie.type == 'pie' ? {
                             formatter(params) {
-                                const percent = Number(((params.value / total) * 100)).toFixed(2);
-                                return '{blue|' + params.name + '\n ' + percent + '%}';
+                                const { name, value } = params.data
+                                const percent = ((Number(value) / total) * 100).toFixed(2);
+                                return '{blue|' + name + '\n ' + percent + '%}';
                             },
                             rich: {
                                 blue: {
-                                    color: '#297eb5',
+                                    color: '#31CBF2',
                                     fontSize: 14,
                                     align: 'center'
                                 },
                             },
                         } : undefined,
-                        ...serie.type == 'line' ? { smooth: true,
-                        symbol: 'circle',
-                        symbolSize: 4,
-                        lineStyle: {
-                            type: 'solid',
-                            width: 2,
-                            // color,
-                        },
-                        itemStyle: {
-                            // color,
-                        },
-                        areaStyle: {
-                            color: 'transparent',
-                        },
-                        emphasis: {
-                            itemStyle: {
-                                borderColor: 'rgba(64, 74, 189, 0.56)',
-                                shadowColor: 'rgba(64, 74, 189, 0.2)',
-                                shadowBlur: 20,
-                                opacity: 1,
-                                borderWidth: 10,
-                                color: {
-                                    type: 'radial',
-                                    x: 0.5,
-                                    y: 0.5,
-                                    r: 0.6,
-                                    colorStops: [{
-                                        offset: 0,
-                                        color: '#fdc558'
-                                    },
-                                    {
-                                        offset: .5,
-                                        color: '#c32129'
-                                    },
-                                    {
-                                        offset: 1,
-                                        color: '#582ed3'
-                                    }],
-                                }
+                        ...serie.type == 'line' ? {
+                            // smooth: true,
+                            symbol: 'circle',
+                            symbolSize: 4,
+                            lineStyle: {
+                                type: 'solid',
+                                width: 2,
+                                // color,
                             },
-                        }
-                     } : undefined,
+                            itemStyle: {
+                                // color,
+                            },
+                            areaStyle: {
+                                color: 'transparent',
+                            },
+                            emphasis: {
+                                itemStyle: {
+                                    borderColor: 'rgba(64, 74, 189, 0.56)',
+                                    shadowColor: 'rgba(64, 74, 189, 0.2)',
+                                    shadowBlur: 20,
+                                    opacity: 1,
+                                    borderWidth: 10,
+                                    color: {
+                                        type: 'radial',
+                                        x: 0.5,
+                                        y: 0.5,
+                                        r: 0.6,
+                                        colorStops: [{
+                                            offset: 0,
+                                            color: '#fdc558'
+                                        },
+                                        {
+                                            offset: .5,
+                                            color: '#c32129'
+                                        },
+                                        {
+                                            offset: 1,
+                                            color: '#582ed3'
+                                        }],
+                                    }
+                                },
+                            }
+                        } : undefined,
                     })
                     return serie.type == 'bar'
                         ? getBarSerie(serie, undefined, vertical)

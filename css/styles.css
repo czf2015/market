@@ -40,6 +40,16 @@ body {
   color:  #0ab7be;
 }
 
+.subject > select {
+  min-width: 2rem;
+  padding: .1rem .2rem;
+  font-size: 0.4rem;
+  line-height: 1.4;
+  color: #0fc7d1;
+  background-color: transparent;
+  border: 1px solid #0fc7d1;
+}
+
 .charts {
   flex: 2;
 }

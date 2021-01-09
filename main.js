@@ -12,4 +12,7 @@ export default (subject) => {
             new MapChart(el).draw(data[key], subject)
         })
     })
+    document.querySelector('.subject > select').onchange = () => {
+        location.href = `./${subject == 'XR' ? 'index' : 'XR'}.html`
+    }
 }

@@ -150,7 +150,7 @@ export const getPieSerie = ({ name, data, clockwise = false, minShowLabelAngle =
         },
         label: {
             formatter(params) {
-                const percent = Number(((params.value / total) * 100)).toFixed(2);
+                const percent = ((Number(params.value) / total) * 100).toFixed(2);
                 return '{blue|' + params.name + '\n ' + percent + '%}';
             },
             rich: {

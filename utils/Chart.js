@@ -88,6 +88,14 @@ export default class Chart {
                                 splitLine: {
                                     show: false
                                 },
+                                textStyle: {
+                                    color: '#31CBF2'
+                                },
+                                axisLine: {
+                                    lineStyle: {
+                                        color: '#31CBF2'
+                                    }
+                                },
                             }
                         }
                     })
@@ -98,6 +106,14 @@ export default class Chart {
                             boundaryGap: false,
                             axisLine: {
                                 onZero: false
+                            },
+                            textStyle: {
+                                color: '#31CBF2'
+                            },
+                            axisLine: {
+                                lineStyle: {
+                                    color: '#31CBF2'
+                                }
                             },
                         },
                         xAxis
@@ -115,7 +131,15 @@ export default class Chart {
                                 offset: 40,
                                 splitLine: {
                                     show: false
-                                }
+                                },
+                                textStyle: {
+                                    color: '#31CBF2'
+                                },
+                                axisLine: {
+                                    lineStyle: {
+                                        color: '#31CBF2'
+                                    }
+                                },
                             }
                         }
                     })
@@ -126,6 +150,14 @@ export default class Chart {
                             boundaryGap: false,
                             axisLine: {
                                 onZero: false
+                            },
+                            textStyle: {
+                                color: '#31CBF2'
+                            },
+                            axisLine: {
+                                lineStyle: {
+                                    color: '#31CBF2'
+                                }
                             },
                         },
                         yAxis
@@ -231,7 +263,7 @@ export class MapChart extends Chart {
         const option = {
             title: {
                 text: subject,
-                subtext: '更新时间 2020/10/26 9:30',
+                subtext: `更新时间 ${new Date().toLocaleDateString()}`,
                 sublink: 'http://www.census.gov/popest/data/datasets.html',
                 left: 'left',
                 textStyle: { color: "#08E5F3" }
@@ -249,7 +281,7 @@ export class MapChart extends Chart {
             visualMap: {
                 type: 'piecewise',
                 right: 'center',
-                bottom: 40,
+                bottom: 160,
                 min: 0,
                 max: 100,
                 pieces: [
@@ -273,7 +305,7 @@ export class MapChart extends Chart {
                     roam: false,
                     map: 'china',
                     // center: [112.968049, 36.757468],
-                    center: [108.968049, 36.757468],
+                    center: [104.968049, 34.757468],
                     emphasis: {
                         label: {
                             show: true
