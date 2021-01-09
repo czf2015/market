@@ -3,11 +3,11 @@ import { getMarketInfo } from './services/Market.js'
 
 export default (subject) => {
     getMarketInfo('./data/market.json', subject).then(data => {
-        document.querySelectorAll('[id^="chart-"]').forEach(el => {
+        document.querySelectorAll('.chart').forEach(el => {
             const { key } = el.dataset
             new Chart(el).draw(data[key])
         })
-        document.querySelectorAll('[id^="map-"]').forEach(el => {
+        document.querySelectorAll('.map').forEach(el => {
             const { key } = el.dataset
             new MapChart(el).draw(data[key], subject)
         })

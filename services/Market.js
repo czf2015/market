@@ -24,7 +24,7 @@ const adapter = {
         vertical: true,
         series: [
             {
-                name: '金额',
+                name: '人数',
                 type: 'bar',
             },
             {

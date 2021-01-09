@@ -50,18 +50,18 @@ body {
   border: 1px solid #0fc7d1;
 }
 
-.charts {
+.charts-group {
   flex: 2;
 }
 
-[id^="chart-"] {
+.charts-group > .chart {
   margin-top: 1.6rem;
   width: 100%;
   height: 8rem;
   outline: .04rem #0ab7be solid;
 }
 
-[id^="map-"] {
+.map {
   margin: 1.6rem .4rem;
   flex: 3;
   height: 17.6rem;
