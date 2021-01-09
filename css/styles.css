@@ -33,21 +33,28 @@ body {
 }
 
 .subject {
-  margin-top: .4rem;
+  margin-top: 0.4rem;
   text-align: center;
-  font-size: .4rem;
+  font-size: 0.4rem;
   line-height: 2;
-  color:  #0ab7be;
+  color: #0ab7be;
 }
 
 .subject > select {
   min-width: 2rem;
-  padding: .1rem .2rem;
+  padding: 0.1rem 0.2rem;
   font-size: 0.4rem;
   line-height: 1.4;
   color: #0fc7d1;
   background-color: transparent;
   border: 1px solid #0fc7d1;
+}
+
+.container {
+  width: 37.6rem;
+  margin-top: -0.8rem;
+  height: 19.2rem;
+  padding: 0 0.4rem;
 }
 
 .charts-group {
@@ -58,14 +65,14 @@ body {
   margin-top: 1.6rem;
   width: 100%;
   height: 8rem;
-  outline: .04rem #0ab7be solid;
+  outline: 0.04rem #0ab7be solid;
 }
 
 .map {
-  margin: 1.6rem .4rem;
+  margin: 1.6rem 0.4rem;
   flex: 3;
   height: 17.6rem;
-  outline: .04rem #0ab7be solid;
+  outline: 0.04rem #0ab7be solid;
 }
 
 .alert-box {
@@ -78,7 +85,8 @@ body {
   border: 0.01rem solid #31cbf2;
   overflow-y: auto;
 }
-.alert-box h4 {
+.alert-box > h2 {
+  width: 100%;
   text-align: center;
 }
 .alert-box dl > dt {
@@ -91,10 +99,6 @@ body {
 .flex {
   display: flex;
   justify-content: space-between;
-  width: 37.6rem;
-  margin-top: -.8rem;
-  height: 19.2rem;
-  padding: 0 .4rem;
 }
 .highlight {
   color: #0cc6d2;

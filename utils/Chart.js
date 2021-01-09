@@ -246,7 +246,7 @@ export class MapChart extends Chart {
         const renderHTML = (data, subject) => {
             return data.details.length > 0 ? `
             <article class="alert-box">
-                <h4 class="flex">${data.name}${subject}企业(数量：${data.details.length})</h4>       
+                <h2>${data.name}${subject}企业(总数：${data.details.length})</h2>       
                 <dl class="content">
                 <dt class="flex highlight">
                     <span>企业名称</span>
@@ -274,7 +274,9 @@ export class MapChart extends Chart {
                 showDelay: 0.4,
                 transitionDuration: 0.4,
                 formatter(params) {
-                    return renderHTML(params.data, subject)
+                    const html = renderHTML(params.data, subject)
+                    console.log(html)
+                    return html
                 }
             },
             // left: 0,
